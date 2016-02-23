@@ -28,7 +28,7 @@ class BootStrap {
        // def statusDelivered = OrderStatus.valueOf("DELIVERED").save(failOnError: true)
 
         //Create Admin user
-        def adminUser = new User(username:"admin", email: "admin@admin.com", password: "password").save(failOnError: true)
+        def adminUser = new User(fullName:"Admin", username:"admin", email: "admin@admin.com", password: "password").save(failOnError: true)
 
         new UserRole(user: adminUser, role: roleAdmin).save(failOnError: true)
 
