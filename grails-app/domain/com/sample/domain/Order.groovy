@@ -1,6 +1,6 @@
 package com.sample.domain
 
-class Orders {
+class Order {
     int quantity
     float amount
     OrderStatus status

@@ -1,13 +1,12 @@
 package com.sample.controller
 
-import com.sample.controller.OrdersController
-import com.sample.domain.Orders
+import com.sample.domain.Order
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(OrdersController)
-@Mock(Orders)
-class OrdersControllerSpec extends Specification {
+@TestFor(OrderController)
+@Mock(Order)
+class OrderControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -38,7 +37,7 @@ class OrdersControllerSpec extends Specification {
         when: "The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def orders = new Orders()
+        def orders = new Order()
         orders.validate()
         controller.save(orders)
 
@@ -49,14 +48,14 @@ class OrdersControllerSpec extends Specification {
         when: "The save action is executed with a valid instance"
         response.reset()
         populateValidParams(params)
-        orders = new Orders(params)
+        orders = new Order(params)
 
         controller.save(orders)
 
         then: "A redirect is issued to the show action"
         response.redirectedUrl == '/orders/show/1'
         controller.flash.message != null
-        Orders.count() == 1
+        Order.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,7 +67,7 @@ class OrdersControllerSpec extends Specification {
 
         when: "A domain instance is passed to the show action"
         populateValidParams(params)
-        def orders = new Orders(params)
+        def orders = new Order(params)
         controller.show(orders)
 
         then: "A model is populated containing the domain instance"
@@ -84,7 +83,7 @@ class OrdersControllerSpec extends Specification {
 
         when: "A domain instance is passed to the edit action"
         populateValidParams(params)
-        def orders = new Orders(params)
+        def orders = new Order(params)
         controller.edit(orders)
 
         then: "A model is populated containing the domain instance"
@@ -104,7 +103,7 @@ class OrdersControllerSpec extends Specification {
 
         when: "An invalid domain instance is passed to the update action"
         response.reset()
-        def orders = new Orders()
+        def orders = new Order()
         orders.validate()
         controller.update(orders)
 
@@ -115,7 +114,7 @@ class OrdersControllerSpec extends Specification {
         when: "A valid domain instance is passed to the update action"
         response.reset()
         populateValidParams(params)
-        orders = new Orders(params).save(flush: true)
+        orders = new Order(params).save(flush: true)
         controller.update(orders)
 
         then: "A redirect is issues to the show action"
@@ -136,16 +135,16 @@ class OrdersControllerSpec extends Specification {
         when: "A domain instance is created"
         response.reset()
         populateValidParams(params)
-        def orders = new Orders(params).save(flush: true)
+        def orders = new Order(params).save(flush: true)
 
         then: "It exists"
-        Orders.count() == 1
+        Order.count() == 1
 
         when: "The domain instance is passed to the delete action"
         controller.delete(orders)
 
         then: "The instance is deleted"
-        Orders.count() == 0
+        Order.count() == 0
         response.redirectedUrl == '/orders/index'
         flash.message != null
     }

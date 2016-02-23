@@ -5,7 +5,7 @@ class Product {
     String name
     String description
     float price
-    static hasMany = [orders : Orders]
+    static hasMany = [orders : Order]
 
     static constraints = {
         name(blank: false, maxSize: 50, unique: true)

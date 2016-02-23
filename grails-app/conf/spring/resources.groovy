@@ -1,4 +1,4 @@
-import com.sample.domain.Orders
+import com.sample.domain.Order
 import com.sample.domain.Product
 import com.sample.domain.User
 import grails.rest.render.json.JsonRenderer

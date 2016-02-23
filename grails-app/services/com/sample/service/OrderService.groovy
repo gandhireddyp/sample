@@ -1,22 +1,22 @@
 package com.sample.service
 
 import com.sample.domain.OrderStatus
-import com.sample.domain.Orders
+import com.sample.domain.Order
 import grails.transaction.Transactional
 
 @Transactional
-class OrdersService {
+class OrderService {
 
-    def createOrder(Orders order) {
+    def createOrder(Order order) {
         return order.save(failOnError: true)
     }
 
     def findAll() {
-        return Orders.list();
+        return Order.list();
     }
 
     def fetchOrder(long orderId) {
-        return Orders.get(orderId)
+        return Order.get(orderId)
     }
 
     /**
@@ -26,12 +26,16 @@ class OrdersService {
      * @param orderId
      * @return
      */
-    def updateOrder(Orders order, long orderId) {
-        def fetchedOrder = Orders.get(orderId)
+    def updateOrder(Order order, long orderId) {
+        def fetchedOrder = Order.get(orderId)
         if (fetchedOrder) {
              fetchedOrder.setStatus(order.status)
             return fetchedOrder.save(flush: true)
         }
         return null
+    }
+
+    def search(long userId, long productId, OrderStatus status){
+        Order.fin
     }
 }

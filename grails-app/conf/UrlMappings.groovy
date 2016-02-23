@@ -28,11 +28,11 @@ class UrlMappings {
             action = [GET: "show", PUT: "update", DELETE: "delete"]
         }
 
-        "/api/orders"(controller: "orders"){
+        "/api/orders"(controller: "order"){
             action = [GET: "index", POST: "create"]
         }
 
-        "/api/orders/$orderId"(controller: "orders"){
+        "/api/orders/$orderId"(controller: "order"){
             action = [GET: "show", PUT: "update"]
         }
 

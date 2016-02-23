@@ -1,6 +1,5 @@
 package com.sample.domain
 
-import grails.rest.Resource
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
@@ -20,7 +19,7 @@ class User implements Serializable {
 	boolean accountLocked
 	boolean passwordExpired
 	String email
-    static hasMany = [orders: Orders]
+    static hasMany = [orders: Order]
 
     static fetchMode = [orders: 'lazy']
 
