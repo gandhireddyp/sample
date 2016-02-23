@@ -1,5 +1,6 @@
-package com.sample.domain
+package com.sample.controller
 
+import com.sample.domain.Product
 import grails.converters.JSON
 
 import static org.springframework.http.HttpStatus.*

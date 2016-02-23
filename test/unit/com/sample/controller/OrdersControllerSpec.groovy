@@ -1,12 +1,13 @@
-package com.sample.domain
+package com.sample.controller
 
-
+import com.sample.controller.OrdersController
+import com.sample.domain.Orders
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(OrderStatusController)
-@Mock(OrderStatus)
-class OrderStatusControllerSpec extends Specification {
+@TestFor(OrdersController)
+@Mock(Orders)
+class OrdersControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -20,8 +21,8 @@ class OrderStatusControllerSpec extends Specification {
         controller.index()
 
         then: "The model is correct"
-        !model.orderStatusInstanceList
-        model.orderStatusInstanceCount == 0
+        !model.ordersInstanceList
+        model.ordersInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -29,7 +30,7 @@ class OrderStatusControllerSpec extends Specification {
         controller.create()
 
         then: "The model is correctly created"
-        model.orderStatusInstance != null
+        model.ordersInstance != null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -37,25 +38,25 @@ class OrderStatusControllerSpec extends Specification {
         when: "The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def orderStatus = new OrderStatus()
-        orderStatus.validate()
-        controller.save(orderStatus)
+        def orders = new Orders()
+        orders.validate()
+        controller.save(orders)
 
         then: "The create view is rendered again with the correct model"
-        model.orderStatusInstance != null
+        model.ordersInstance != null
         view == 'create'
 
         when: "The save action is executed with a valid instance"
         response.reset()
         populateValidParams(params)
-        orderStatus = new OrderStatus(params)
+        orders = new Orders(params)
 
-        controller.save(orderStatus)
+        controller.save(orders)
 
         then: "A redirect is issued to the show action"
-        response.redirectedUrl == '/orderStatus/show/1'
+        response.redirectedUrl == '/orders/show/1'
         controller.flash.message != null
-        OrderStatus.count() == 1
+        Orders.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -67,11 +68,11 @@ class OrderStatusControllerSpec extends Specification {
 
         when: "A domain instance is passed to the show action"
         populateValidParams(params)
-        def orderStatus = new OrderStatus(params)
-        controller.show(orderStatus)
+        def orders = new Orders(params)
+        controller.show(orders)
 
         then: "A model is populated containing the domain instance"
-        model.orderStatusInstance == orderStatus
+        model.ordersInstance == orders
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -83,11 +84,11 @@ class OrderStatusControllerSpec extends Specification {
 
         when: "A domain instance is passed to the edit action"
         populateValidParams(params)
-        def orderStatus = new OrderStatus(params)
-        controller.edit(orderStatus)
+        def orders = new Orders(params)
+        controller.edit(orders)
 
         then: "A model is populated containing the domain instance"
-        model.orderStatusInstance == orderStatus
+        model.ordersInstance == orders
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -97,28 +98,28 @@ class OrderStatusControllerSpec extends Specification {
         controller.update(null)
 
         then: "A 404 error is returned"
-        response.redirectedUrl == '/orderStatus/index'
+        response.redirectedUrl == '/orders/index'
         flash.message != null
 
 
         when: "An invalid domain instance is passed to the update action"
         response.reset()
-        def orderStatus = new OrderStatus()
-        orderStatus.validate()
-        controller.update(orderStatus)
+        def orders = new Orders()
+        orders.validate()
+        controller.update(orders)
 
         then: "The edit view is rendered again with the invalid instance"
         view == 'edit'
-        model.orderStatusInstance == orderStatus
+        model.ordersInstance == orders
 
         when: "A valid domain instance is passed to the update action"
         response.reset()
         populateValidParams(params)
-        orderStatus = new OrderStatus(params).save(flush: true)
-        controller.update(orderStatus)
+        orders = new Orders(params).save(flush: true)
+        controller.update(orders)
 
         then: "A redirect is issues to the show action"
-        response.redirectedUrl == "/orderStatus/show/$orderStatus.id"
+        response.redirectedUrl == "/orders/show/$orders.id"
         flash.message != null
     }
 
@@ -129,23 +130,23 @@ class OrderStatusControllerSpec extends Specification {
         controller.delete(null)
 
         then: "A 404 is returned"
-        response.redirectedUrl == '/orderStatus/index'
+        response.redirectedUrl == '/orders/index'
         flash.message != null
 
         when: "A domain instance is created"
         response.reset()
         populateValidParams(params)
-        def orderStatus = new OrderStatus(params).save(flush: true)
+        def orders = new Orders(params).save(flush: true)
 
         then: "It exists"
-        OrderStatus.count() == 1
+        Orders.count() == 1
 
         when: "The domain instance is passed to the delete action"
-        controller.delete(orderStatus)
+        controller.delete(orders)
 
         then: "The instance is deleted"
-        OrderStatus.count() == 0
-        response.redirectedUrl == '/orderStatus/index'
+        Orders.count() == 0
+        response.redirectedUrl == '/orders/index'
         flash.message != null
     }
 }

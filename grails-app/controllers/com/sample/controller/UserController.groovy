@@ -1,5 +1,6 @@
-package com.sample.domain
+package com.sample.controller
 
+import com.sample.domain.User
 import grails.converters.JSON
 import grails.transaction.Transactional
 

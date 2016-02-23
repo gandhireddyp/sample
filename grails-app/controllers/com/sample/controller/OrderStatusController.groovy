@@ -1,7 +1,5 @@
-package com.sample.domain
+package com.sample.controller
 
-
-import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional

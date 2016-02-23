@@ -1,4 +1,4 @@
-package sample
+package com.sample.service
 
 import com.sample.service.UserService
 import grails.test.mixin.TestFor
