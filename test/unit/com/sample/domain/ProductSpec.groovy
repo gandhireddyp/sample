@@ -15,6 +15,33 @@ class ProductSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test create Product"() {
+        given:
+        def productName = "productName"
+        def productDescription = "productDescription"
+
+        when:
+        Product product = new Product(name: productName, description: productDescription, price: 156.5f)
+        def savedProduct = product.save()
+
+        then:
+        savedProduct.getId()
+        savedProduct.getName() == productName
+        savedProduct.getDescription() == productDescription
+        savedProduct.getPrice() == 156.5f
+
+        //Check the number of products
+        Product.count == 1
     }
+
+
+
+    //test create product with invalid values
+    //test create product with values
+
+    //test update with non-existing id
+    // test update with existing id
+
+    //test delete with non-existing id
+    //test delete with existing id
 }
