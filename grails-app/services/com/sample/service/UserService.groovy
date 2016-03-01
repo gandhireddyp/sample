@@ -1,7 +1,6 @@
 package com.sample.service
 
 import com.sample.domain.User
-import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional
