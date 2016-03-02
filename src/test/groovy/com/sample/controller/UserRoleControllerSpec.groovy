@@ -6,7 +6,7 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(UserRoleController)
+@TestFor(com.sample.controller.UserRoleController)
 class UserRoleControllerSpec extends Specification {
 
     def setup() {

@@ -12,7 +12,7 @@ class UserController {
 
     def userService
 
-    def index() {
+    def list() {
         render(userService.findAll() as JSON)
     }
 
@@ -26,8 +26,9 @@ class UserController {
         def updatedUser = userService.updateUser(user, params.userId as long)
         if (updatedUser) {
             render(updatedUser as JSON)
+        } else {
+            render status: NOT_FOUND
         }
-        response.sendError(NOT_FOUND)
     }
 
     def delete() {
@@ -36,7 +37,12 @@ class UserController {
     }
 
     def show() {
-        render(userService.fetchUser(params.userId as long) as JSON)
+        def user = userService.fetchUser(params.userId as long)
+        if (user) {
+            render(user as JSON)
+        } else {
+            render status: NOT_FOUND
+        }
     }
 
 }

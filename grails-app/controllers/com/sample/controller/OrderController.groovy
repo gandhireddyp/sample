@@ -24,7 +24,12 @@ class OrderController {
 
     def show() {
         long orderId = params.orderId as long
-        render(orderService.fetchOrder(orderId) as JSON)
+        def order = orderService.fetchOrder(orderId)
+        if (order) {
+            render(order as JSON)
+        } else {
+            render status: NOT_FOUND
+        }
     }
 
     def update() {
@@ -32,9 +37,9 @@ class OrderController {
         def updatedOrder = orderService.updateOrder(order, params.orderId as long)
         if (updatedOrder) {
             render updatedOrder as JSON
+        }else{
+            render status: NOT_FOUND
         }
-
-        render status: NOT_FOUND
     }
 
 }

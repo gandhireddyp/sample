@@ -1,15 +1,12 @@
 package com.sample.domain
 
-import grails.test.mixin.Mock
-import grails.test.mixin.TestFor
-import spock.lang.Specification
-import com.sample.domain.Product
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
-@TestFor(Product)
-@Mock(Product)
+import grails.test.mixin.integration.Integration
+import grails.transaction.*
+import spock.lang.*
+
+@Integration
+@Rollback
 class ProductSpec extends Specification {
 
     def setup() {
@@ -37,7 +34,21 @@ class ProductSpec extends Specification {
         Product.count == 1
     }
 
+    void "test create Product with invalid values"() {
+        given:
+        def productName = null
+        def productDescription = "productDescription"
 
+        when:
+        Product product = new Product(name: productName, description: productDescription, price: 156.5f)
+        product.save()
+
+        then:
+        product.hasErrors()
+
+        //Check the number of products
+        Product.count == 0
+    }
 
     //test create product with invalid values
     //test create product with values

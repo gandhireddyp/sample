@@ -6,7 +6,7 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Role)
+@TestFor(com.sample.domain.Role)
 class RoleSpec extends Specification {
 
     def setup() {

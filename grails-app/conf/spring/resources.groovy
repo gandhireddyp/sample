@@ -12,4 +12,5 @@ beans = {
     productRenderer(JsonRenderer, Product) {
         excludes = ["orders"]
     }
+
 }
