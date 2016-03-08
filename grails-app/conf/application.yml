@@ -118,6 +118,9 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    gorm:
+        failOnError: true
+
 endpoints:
     jmx:
         unique-names: true

@@ -6,7 +6,7 @@ import grails.rest.render.json.JsonRenderer
 beans = {
 
     userRenderer(JsonRenderer, User) {
-        excludes = ["orders", "password"]
+        excludes = ["orders", "password", "accountExpired", "accountLocked", "enabled", "passwordExpired"]
     }
 
     productRenderer(JsonRenderer, Product) {

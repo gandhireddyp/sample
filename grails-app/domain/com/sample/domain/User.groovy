@@ -3,7 +3,11 @@ package com.sample.domain
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
-@EqualsAndHashCode(includes='username')
+
+/**
+ * User class associated with Spring Security
+ */
+@EqualsAndHashCode(includes=['username', "fullName", "email"])
 @ToString(includes='username', includeNames=true, includePackage=false)
 class User implements Serializable {
 
@@ -14,12 +18,15 @@ class User implements Serializable {
 	String fullName
 	String username
 	String password
+    String email
+    static hasMany = [orders: Order]
+
+
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
-	String email
-    static hasMany = [orders: Order]
+
 
     static fetchMode = [orders: 'lazy']
 
