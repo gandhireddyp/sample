@@ -15,6 +15,7 @@ class ProductIntegSpec extends Specification {
     def cleanup() {
     }
 
+    @Ignore
     void "test create Product"() {
         given:
         def productName = "productName"
@@ -34,6 +35,7 @@ class ProductIntegSpec extends Specification {
         Product.count == 1
     }
 
+    @Ignore
     void "test create Product with invalid values"() {
         given:
         def productName = null

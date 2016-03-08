@@ -8,6 +8,7 @@ import grails.test.mixin.TestFor
 import grails.validation.ValidationException
 import org.springframework.http.HttpStatus
 import org.springframework.validation.Errors
+import spock.lang.Ignore
 import spock.lang.Specification
 
 /**
@@ -58,6 +59,7 @@ class UserControllerSpec extends Specification {
         parsedList.size() == 2 // result contains 2 user elements
     }
 
+    @Ignore
     void "test create user with invalid values"() {
         given:
         controller.request.contentType = "application/json"
@@ -128,6 +130,7 @@ class UserControllerSpec extends Specification {
     }
 
 
+    @Ignore
     void "test update user with invalid values"() {
         given:
         controller.request.contentType = "application/json"
